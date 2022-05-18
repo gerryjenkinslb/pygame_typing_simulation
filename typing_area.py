@@ -46,14 +46,14 @@ class TypingArea:
         """
 
         self.text_buffer = deque(text)  # create deque of chars to output
-        self.rect = area.copy() # save area
+        self.source_rect = area.copy() # save area
         self.font = font
         self.fg_color = fg_color
         self.bk_color = bk_color
 
         self.size = area.size
-        self.surface = pygame.Surface(self.size, flags=pygame.SRCALPHA)
-        self.surface.fill(bk_color)
+        self.image = pygame.Surface(self.size, flags=pygame.SRCALPHA)
+        self.image.fill(bk_color)
 
         self.wps = word_per_min
         self.y = 0 # keep track of vertical position of next line of text
@@ -61,17 +61,17 @@ class TypingArea:
 
         self.line = ""  # current string being rendered on line
         self.next_time = 0.0  # trigger time for next action
-        self.dirty = False  # set to signal draw method to copy to screen
+        self.dirty = 0  # set to signal draw method to copy to screen
 
     def _newline_line(self):  # handle action when a new line is encountered advance down or scroll up
         self.y += self.y_delta
         self.line = ""
         if self.y + self.y_delta > self.size[1]:  # line does not fit in remaining space
-            self.surface.blit(self.surface, (0, -self.y_delta))  # scroll up
+            self.image.blit(self.image, (0, -self.y_delta))  # scroll up
             self.y += -self.y_delta  # backup a line
-            pygame.draw.rect(self.surface, self.bk_color,
+            pygame.draw.rect(self.image, self.bk_color,
                              (0, self.y, self.size[0], self.size[1] - self.y))
-            self.dirty = True
+            self.dirty = 1
 
     def _new_char(self, c):  # render next char
         if c == '\n':
@@ -79,8 +79,8 @@ class TypingArea:
         else:
             self.line += c
             text = self.font.render(self.line, True, self.fg_color)
-            self.surface.blit(text, (0, self.y))
-            self.dirty = True
+            self.image.blit(text, (0, self.y))
+            self.dirty = 1
 
 
     def update(self):
@@ -100,5 +100,5 @@ class TypingArea:
     def draw(self, screen):
         """Call obj.draw() from the main game loop"""
         if self.dirty:
-            screen.blit(self.surface, self.rect)  # transfer to screen
-            self.dirty = False
+            screen.blit(self.image, self.source_rect)  # transfer to screen
+            self.dirty = 0
