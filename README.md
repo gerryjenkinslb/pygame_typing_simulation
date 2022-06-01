@@ -8,6 +8,10 @@ would look like a user was typing inside a rectangular surface and start to scro
 You can see how I did this in my video
 [PyGame: Scroll Text - Technique and Code Walk Through](https://youtu.be/PWd2CJfdx1A)
 
+
+https://user-images.githubusercontent.com/905148/171503515-b38d1bdf-5e4a-43f8-90f6-15dffe5c23ce.mp4
+
+
 ----
 ## PyGame_typing_simulation Code base
 
