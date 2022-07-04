@@ -13,8 +13,7 @@ def _type_delay(word_per_min=40.0):  # set speed as words per minute
     """
 
     # Humans max typing record is about 215
-    #  Average is 35
-    #  To get a job typing, you need 60 to 80 WPM
+    #  Average is 35, To get a job typing, you need 60 to 80 WPM
 
     speed_factor = 40/word_per_min
     mean = BASE_DELAY_MS * speed_factor   # adjust the mean time based on user multiplier
@@ -28,11 +27,6 @@ class TypingArea:
     class to a Sprite if needed
 
     To use, just create object, and call the update and draw methods in the normal game loop
-
-    Args:
-        file_loc (str): The file location of the spreadsheet
-        print_cols (bool): A flag used to print the columns to the console
-            (default is False)
     """
 
     def __init__(self, text, area, font, fg_color, bk_color, word_per_min=80):  # speed relative faster or slower
