@@ -1,10 +1,19 @@
+# Class to support simulating human typing in an area
+# in PyGame with Scrolling (known as typwriter effect)
+# Inter-key timing is random based inspired by this paper:
+#    Dhakal, V., Feit, A., Kristensson, P.O. and Oulasvirta, A. 2018.
+#    'Observations on typing from 136 million keystrokes.'
+#    In Proceedings of the 36th ACM Conference on Human
+#    Factors in Computing Systems (CHI 2018). ACM Press.
+
+
 import pygame
 import time
 from random import gauss
 from collections import deque
 
-CPS_40WPM = 5 * 40 / 60  # to get 35 words per minute
-BASE_DELAY_MS = 1000/CPS_40WPM
+CPS_40WPM = 5 * 40 / 60  # 40 WPM (Words per min)  converted to CPS (chars per second)
+BASE_DELAY_MS = 1000/CPS_40WPM  # default time between chars in ms for 40 WPM
 
 
 def _type_delay(word_per_min=40.0):  # set speed as words per minute
@@ -18,7 +27,7 @@ def _type_delay(word_per_min=40.0):  # set speed as words per minute
     speed_factor = 40/word_per_min
     mean = BASE_DELAY_MS * speed_factor   # adjust the mean time based on user multiplier
 
-    v = gauss(mean, mean/2) # create random delay in milliseconds
+    v = gauss(mean, mean/2)  # create random delay in milliseconds
     return min(max(0.0, v), 3000.0 * speed_factor)  # max delay is 3 sec
 
 
@@ -40,7 +49,7 @@ class TypingArea:
         """
 
         self.text_buffer = deque(text)  # create deque of chars to output
-        self.source_rect = area.copy() # save area
+        self.source_rect = area.copy()  # save area
         self.font = font
         self.fg_color = fg_color
         self.bk_color = bk_color
@@ -50,7 +59,7 @@ class TypingArea:
         self.image.fill(bk_color)
 
         self.wps = word_per_min
-        self.y = 0 # keep track of vertical position of next line of text
+        self.y = 0  # keep track of vertical position of next line of text
         self.y_delta = self.font.size("M")[1]  # get Height of a Char for advancing line down or scrolling
 
         self.line = ""  # current string being rendered on line
@@ -76,14 +85,12 @@ class TypingArea:
             self.image.blit(text, (0, self.y))
             self.dirty = 1
 
-
     def update(self):
         """Call obj.update() from pygame main game loop"""
         if self.text_buffer:  # char available
             if self.next_time < time.time():  # check if time to render next char
                 self._new_char(self.text_buffer.popleft())  # pop char
                 if self.text_buffer:  # if more chars, the setup next time
-                    next_c = self.text_buffer[0]
                     delay = _type_delay(self.wps)
                     self.next_time = time.time() + delay/1000.0
                 else:

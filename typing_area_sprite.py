@@ -105,7 +105,6 @@ class TypingAreaSprite(pygame.sprite.DirtySprite):
             screen.blit(self.image, self.rect)  # transfer to screen
             self.dirty = 0
 
-
 def testit():
     STORY = """Hello fellow programmers
     We endeavor to type code in precise
@@ -153,7 +152,6 @@ def testit():
             rects = allsprites.draw(screen)
             pygame.display.update(rects)
             clock.tick(60)
-
 
 if __name__ == "__main__":
     testit()
