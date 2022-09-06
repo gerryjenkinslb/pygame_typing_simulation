@@ -20,12 +20,8 @@ WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
 GREY = (200, 200, 200)
 
-<<<<<<< HEAD
 
-# Test the Class in typing_area.py
-=======
 # Test this Class
->>>>>>> 17aa707 (new code)
 STORY = """Hello fellow programmers
 We endeavor to type code in precise
 ways and sometimes go down a rabbit
@@ -41,19 +37,8 @@ never to infest us again."""
 
 def example1():
     # start up pygame
-<<<<<<< HEAD
-    os.environ['SDL_VIDEO_WINDOW_POS'] = "840,500"  # window offset from top,left of screen
-    
-    pygame.init()
-    screen = pygame.display.set_mode((1150, 480))  # window size
-    clock = pygame.time.Clock()
-    font = pygame.font.SysFont("Liberation Sans", 65)
-    
-    message = TypingArea(STORY, pygame.Rect(25, 0, 1100, 450), font, WHITE, BLACK, word_per_min=200)
-
-    # main pygame loop
-=======
     os.environ['SDL_VIDEO_WINDOW_POS'] = "300,400"
+
     pygame.init()
     w = 1100
     h = 420
@@ -65,7 +50,6 @@ def example1():
     area_rect = pygame.Rect(25, 0, w-50, h-25)
     message = TypingArea(STORY, area_rect, font, WHITE, BLACK, word_per_min=800)
 
->>>>>>> 17aa707 (new code)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
