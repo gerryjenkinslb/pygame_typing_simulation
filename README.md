@@ -88,5 +88,3 @@ comments are a good guide as to what is happening.
         TypingAreaSprite(pygame.Sprite.DirtySprite)
     
    
-
-'''
