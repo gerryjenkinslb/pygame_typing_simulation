@@ -30,7 +30,9 @@ and when to advance a line or to scroll up if we have reached the end of the are
 we also handle of course the char by char display to simulate typing. I hope the
 comments are a good guide as to what is happening.
 
-> *I will be working on an article and video for a code walk-through soon.*
+See: [associated video](https://youtu.be/4njHgre-pKM)
+
+> *I will be working on an blog article for a code walk-through soon at [gjenkinsedu.com](https://gjenkinsedu.com)*
 >
 >-- enjoy, \
 >   &nbsp;&nbsp;&nbsp;**Gerry Jenkins**
