@@ -17,11 +17,12 @@ https://user-images.githubusercontent.com/905148/171503515-b38d1bdf-5e4a-43f8-90
 ----
 ## PyGame_typing_simulation Code base
 
-We have two files:  `main.py` and `typing_area.py`.
+We have three python files:  `main.py`, `typing_area.py`, and `typing_area_sprite`.
 
 The first defines a class called **TypingArea** that implements a rectangular are that can display
-text onto. You can easily use this by creating a object and then calling the update and draw methods
-main PyGame loop. Check out main.py for how to call it.
+text onto. You can easily use this by creating a object and then calling the **update** and **draw** methods
+main PyGame loop. Check out main.py for and example of using this class. 
+The third file `typing_area_sprite` is a version of this that implements a PyGame DirtySprite object.
 
 `typing_area.py`:
 In the code we need to handle the timing in pygame
@@ -36,42 +37,56 @@ comments are a good guide as to what is happening.
 > 
 > 
 ---
-# DOCUMENTATION:
+## DOCUMENTATION:
 
-## TypingArea Objects
+    FILE
+        typing_area.py
+    
+    DESCRIPTION
+        Class to support simulating human typing in an area
+        in PyGame with Scrolling (known as typwriter effect)
+        Inter-key timing is random based inspired by this paper:
+           Dhakal, V., Feit, A., Kristensson, P.O. and Oulasvirta, A. 2018.
+           'Observations on typing from 136 million keystrokes.'
+           In Proceedings of the 36th ACM Conference on Human
+           Factors in Computing Systems (CHI 2018). ACM Press.
 
-```python
-class TypingArea()
-```
+    class TypingArea(builtins.object)
+         TypingArea(text, area, font, fg_color, bk_color, wps=80)
+         
+         Class to automate a rectangular area that text is typed into in PyGame.
+         A dirty sprite version: "TypingAreaSprite" is in file typing_area_sprite.py
+         
+         Use by creating object, call update and draw methods in the normal game loop
+         
+         Methods defined here:
+         
+         __init__(self, text, area, font, fg_color, bk_color, wps=80)
+             Constructor: TypingClass(text, area, font, fg_color, bk_color, wps=80)
+             
+             Args:
+                 text: text to display, add more using obj.text_buffer.extend(text)
+                 area: PyGame Rect Object specifying the screen rectangle
+                 font, fg_color, bk_color: font specs
+                 wps: an optional parameter to set speed of typing, 80 wps default
+         
+         draw(self, screen)
+             Call obj.draw() from the main game loop
+         
+         update(self)
+             Call obj.update() from pygame main game loop
 
-Class to automate a rectangular area that text is typed into in PyGame. You can easily covert this
-class to a Sprite if needed
+    
+    FILE
+        typing_area_sprite.py
 
-To use, just create object, and call the update and draw methods in the normal game loop
+    DESCRIPTION
+        Constructor, draw(), and update() are same as TypingArea object, but
+        this is a DirtySprite, see test code at bottom of file.
 
-**Arguments**:
+    CLASS
+        TypingAreaSprite(pygame.Sprite.DirtySprite)
+    
+   
 
-- `file_loc` _str_ - The file location of the spreadsheet
-- `print_cols` _bool_ - A flag used to print the columns to the console
-  (default is False)
-
-#### \_\_init\_\_
-
-```python
-def __init__(text, area, font, fg_color, bk_color, word_per_min=80)
-```
-
-Constructor call  TypingClass(text, area, fond, fg_color, bk_color, word_per_min=80)
-
-**Arguments**:
-
-- `text` - string of test to display, can add more by using obj.text_buffer.extend(text)
-- `area` - PyGame Rect Object specifying the screen rectangle
-  font, fg_color, bk_color: font and its foreground and background color
-- `word_per_min` - an optional parameter to set speed of typing
-
-#### update
-
-```python
-def update()
-```
+'''
