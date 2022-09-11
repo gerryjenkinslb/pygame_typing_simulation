@@ -1,5 +1,5 @@
 # Class to support simulating human typing in an area
-# in PyGame with Scrolling (known as typwriter effect)
+# in PyGame with Scrolling (known as the typewriter effect)
 # Inter-key timing is random based inspired by this paper:
 #    Dhakal, V., Feit, A., Kristensson, P.O. and Oulasvirta, A. 2018.
 #    'Observations on typing from 136 million keystrokes.'
@@ -35,9 +35,12 @@ def _type_delay(word_per_min=40.0):  # set speed as words per minute
 
 class TypingArea:
     """Class to automate a rectangular area that text is typed into in PyGame.
-    A dirty sprite version: "TypingAreaSprite" is in file typing_area_sprite.py
+    Dirty sprite version: "TypingAreaSprite" located in typing_area_sprite.py file
 
-    Use by creating object, call update and draw methods in the normal game loop
+    Call obj.update() and obj.draw() in the normal game loop
+
+    Note: you can dynamically add to char queue by using either:
+       obj.char_queue.extend(string) or obj.char_queue.append(char)
     """
 
     def __init__(self, text, area, font, fg_color, bk_color, wps=80):
@@ -45,7 +48,7 @@ class TypingArea:
         Constructor: TypingClass(text, area, font, fg_color, bk_color, wps=80)
 
         Args:
-            text: text to display, add more using obj.text_buffer.extend(text)
+            text: text to display
             area: PyGame Rect Object specifying the screen rectangle
             font, fg_color, bk_color: font specs
             wps: an optional parameter to set speed of typing, 80 wps default
@@ -92,18 +95,25 @@ class TypingArea:
 
     def update(self):
         """Call obj.update() from pygame main game loop"""
-        if self.char_queue:  # char available
-            if self.next_time < time.time():  # is it time to render next char
-                self._render_char(self.char_queue.popleft())  # render a char
-                if self.char_queue:  # if more chars, the setup next time
-                    self.next_time = time.time() + _type_delay(self.wps)/1000.0
+        print("update")
+        tick_time = time.time()
+        while self.char_queue and self.next_time <= tick_time:  # time for char?
+            self._render_char(self.char_queue.popleft())  # render it
+            if self.char_queue:  # setup next time
+                t = _type_delay(self.wps)/1000.0
+                if self.next_time > 0.0:
+                    self.next_time += t
                 else:
-                    self.next_time = 0  # empty buffer, nothing to do
-                self.update()  # to handle when more chars to do this tick
+                    self.next_time = tick_time + t
+            else:
+                self.next_time = 0.0  # empty buffer, nothing to do
+            print(tick_time, self.next_time)
+
 
     # call draw from pygame main loop after update
     def draw(self, screen):
         """Call obj.draw() from the main game loop"""
+
         if self.dirty:
             screen.blit(self.area_surface, self.rect)  # transfer to screen
             self.dirty = 0

@@ -48,7 +48,7 @@ def example1():
     font = pygame.font.SysFont("Liberation Sans", 60)
 
     area_rect = pygame.Rect(25, 0, w-50, h-25)
-    message = TypingArea(STORY, area_rect, font, WHITE, BLACK, wps=800)
+    message = TypingArea(STORY, area_rect, font, WHITE, BLACK, wps=400000)
 
     while True:
         for event in pygame.event.get():

@@ -41,52 +41,47 @@ See: [associated video](https://youtu.be/4njHgre-pKM)
 ---
 ## DOCUMENTATION:
 
-    FILE
-        typing_area.py
-    
-    DESCRIPTION
-        Class to support simulating human typing in an area
-        in PyGame with Scrolling (known as typwriter effect)
-        Inter-key timing is random based inspired by this paper:
-           Dhakal, V., Feit, A., Kristensson, P.O. and Oulasvirta, A. 2018.
-           'Observations on typing from 136 million keystrokes.'
-           In Proceedings of the 36th ACM Conference on Human
-           Factors in Computing Systems (CHI 2018). ACM Press.
-
-    class TypingArea(builtins.object)
-         TypingArea(text, area, font, fg_color, bk_color, wps=80)
-         
-         Class to automate a rectangular area that text is typed into in PyGame.
-         A dirty sprite version: "TypingAreaSprite" is in file typing_area_sprite.py
-         
-         Use by creating object, call update and draw methods in the normal game loop
-         
-         Methods defined here:
-         
-         __init__(self, text, area, font, fg_color, bk_color, wps=80)
-             Constructor: TypingClass(text, area, font, fg_color, bk_color, wps=80)
-             
-             Args:
-                 text: text to display, add more using obj.text_buffer.extend(text)
-                 area: PyGame Rect Object specifying the screen rectangle
-                 font, fg_color, bk_color: font specs
-                 wps: an optional parameter to set speed of typing, 80 wps default
-         
-         draw(self, screen)
-             Call obj.draw() from the main game loop
-         
-         update(self)
-             Call obj.update() from pygame main game loop
-
-    
-    FILE
-        typing_area_sprite.py
+    NAME
+        typing_area  (file typing_area.py)
 
     DESCRIPTION
-        Constructor, draw(), and update() are same as TypingArea object, but
-        this is a DirtySprite, see test code at bottom of file.
+        # Class to support simulating human typing in an area
+        # in PyGame with Scrolling (known as the typewriter effect)
+        # Inter-key timing is random based inspired by this paper:
+        #    Dhakal, V., Feit, A., Kristensson, P.O. and Oulasvirta, A. 2018.
+        #    'Observations on typing from 136 million keystrokes.'
+        #    In Proceedings of the 36th ACM Conference on Human
+        #    Factors in Computing Systems (CHI 2018). ACM Press.
 
-    CLASS
-        TypingAreaSprite(pygame.Sprite.DirtySprite)
-    
-   
+    CLASSES
+        builtins.object
+            TypingArea
+        
+        class TypingArea(builtins.object)
+        |  TypingArea(text, area, font, fg_color, bk_color, wps=80)
+        |  
+        |  Class to automate a rectangular area that text is typed into in PyGame.
+        |  Dirty sprite version: "TypingAreaSprite" located in typing_area_sprite.py file
+        |  
+        |  Call obj.update() and obj.draw() in the normal game loop
+        |  
+        |  Note: you can dynamically add to char queue by using either:
+        |     obj.char_queue.extend(string) or obj.char_queue.append(char)
+        |  
+        |  Methods defined here:
+        |  
+        |  __init__(self, text, area, font, fg_color, bk_color, wps=80)
+        |      Constructor: TypingClass(text, area, font, fg_color, bk_color, wps=80)
+        |      
+        |      Args:
+        |          text: text to display
+        |          area: PyGame Rect Object specifying the screen rectangle
+        |          font, fg_color, bk_color: font specs
+        |          wps: an optional parameter to set speed of typing, 80 wps default
+        |  
+        |  draw(self, screen)
+        |      Call obj.draw() from the main game loop
+        |  
+        |  update(self)
+        |      Call obj.update() from pygame main game loop
+        |  
