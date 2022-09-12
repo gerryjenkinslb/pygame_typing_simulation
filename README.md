@@ -7,7 +7,7 @@ asked how to create a PyGame Sprite that would simulate a human typing text.
 So I thought I would work on that. First I needed to work out how to just display text in a dynamic way that 
 would look like a user was typing inside a rectangular surface and start to scroll up when they got to the bottom.
 You can see how I did this in my video
-[PyGame: Scroll Text - Technique and Code Walk Through](https://youtu.be/PWd2CJfdx1A)
+<video src="https://youtu.be/PWd2CJfdx1A" control mute autoplay />
 
 
 https://user-images.githubusercontent.com/905148/171503515-b38d1bdf-5e4a-43f8-90f6-15dffe5c23ce.mp4
