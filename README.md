@@ -1,4 +1,4 @@
-#PyGame Typewriter Effect to Simulate Human Typing
+# PyGame Typewriter Effect to Simulate Human Typing
 
 related video: [PyGame human typing](https://youtu.be/4njHgre-pKM)
 
@@ -14,7 +14,7 @@ https://user-images.githubusercontent.com/905148/171503515-b38d1bdf-5e4a-43f8-90
 
 
 ----
-#PyGame_typing_simulation Codebase
+# PyGame_typing_simulation Codebase
 
 We have three python files:  `main.py`, `typing_area.py`, and `typing_area_sprite`.
 
