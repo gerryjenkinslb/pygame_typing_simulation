@@ -1,3 +1,4 @@
+
 # Class to support simulating human typing in an area
 # in PyGame with Scrolling (known as the typewriter effect)
 # Inter-key timing is random based inspired by this paper:
@@ -51,10 +52,10 @@ class TypingArea:
             text: text to display
             area: PyGame Rect Object specifying the screen rectangle
             font, fg_color, bk_color: font specs
-            wps: an optional parameter to set speed of typing, 80 wps default
+            wps: an optional parameter to set the speed of typing, 80 wps default
         """
 
-        self.char_queue = deque(text)  # use for queue of text to display
+        self.char_queue = deque(text)  # used for queue of text to display
         self.rect = area.copy()
         self.font = font
         self.fg_color = fg_color
@@ -69,7 +70,7 @@ class TypingArea:
         self.y_delta = self.font.size("M")[1]  # get height of line from a char
 
         self.line = ""  # current string buffer being rendered on line
-        self.next_time = 0.0  # trigger time for next action
+        self.next_time = time.time()  # trigger time for next action
         self.dirty = 0  # set to signal draw method to copy to screen
 
     def _render_new_line(self):  # advance down or scroll up on '\n'
@@ -95,19 +96,10 @@ class TypingArea:
 
     def update(self):
         """Call obj.update() from pygame main game loop"""
-        print("update")
-        tick_time = time.time()
-        while self.char_queue and self.next_time <= tick_time:  # time for char?
+        while self.char_queue and self.next_time <= time.time():  # time for char?
             self._render_char(self.char_queue.popleft())  # render it
-            if self.char_queue:  # setup next time
-                t = _type_delay(self.wps)/1000.0
-                if self.next_time > 0.0:
-                    self.next_time += t
-                else:
-                    self.next_time = tick_time + t
-            else:
-                self.next_time = 0.0  # empty buffer, nothing to do
-            print(tick_time, self.next_time)
+            self.next_time += _type_delay(self.wps)/1000.0
+        self.next_time = time.time()  # always reset to current tick time when waiting for char
 
 
     # call draw from pygame main loop after update

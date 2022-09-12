@@ -1,10 +1,11 @@
 # PyGame simulate Human typing or the "Typewriter" effect
 
-# We define a class called 'TypingArea' that implements a rectangular are that can display
-# text onto it as if it was being typed by a human, this is called the Typewriter effect.
-# In the code we need to handle the timing in pygame
-# and when to advance a line or to scroll up if we have reached the end of the area
-# we also handle the char by char display to simulate typing
+# We define a class called 'TypingArea' that implements a rectangular are that
+# can display text onto it as if it was being typed by a human, this is called
+# the Typewriter effect.
+# In the code we need to handle the timing in pygame and when to advance a line
+# or to scroll up if we have reached the end of the area we also handle the
+# char by char display to simulate typing
 
 
 # Note: Char per sec (CPS) = Words per min (WPM) * 5 * 60
@@ -48,13 +49,13 @@ def example1():
     font = pygame.font.SysFont("Liberation Sans", 60)
 
     area_rect = pygame.Rect(25, 0, w-50, h-25)
-    message = TypingArea(STORY, area_rect, font, WHITE, BLACK, wps=400000)
+    message = TypingArea(STORY, area_rect, font, WHITE, BLACK, wps=400)
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                exit()
+                return
         else:
             message.update()
             message.draw(screen)
