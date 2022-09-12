@@ -8,11 +8,8 @@ So I thought I would work on that. First I needed to work out how to just displa
 would look like a user was typing inside a rectangular surface and start to scroll up when they got to the bottom.
 
 Here is a view of it running
-<video controls mute autoplay
-       <source src="https://user-images.githubusercontent.com/905148/171503515-b38d1bdf-5e4a-43f8-90f6-15dffe5c23ce.mp4"
-        type="video/mp4">
-       Can't play video in your browser
-</video>
+
+https://user-images.githubusercontent.com/905148/171503515-b38d1bdf-5e4a-43f8-90f6-15dffe5c23ce.mp4
 
 
 ----
