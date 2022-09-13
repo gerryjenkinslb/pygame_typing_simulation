@@ -99,7 +99,7 @@ class TypingArea:
         while self.char_queue and self.next_time <= time.time():  # time for char?
             self._render_char(self.char_queue.popleft())  # render it
             self.next_time += _type_delay(self.wps)/1000.0
-        self.next_time = time.time()  # always reset to current tick time when waiting for char
+        self.next_time = time.time()  # reset to current tick time when waiting for char
 
 
     # call draw from pygame main loop after update
@@ -109,3 +109,6 @@ class TypingArea:
         if self.dirty:
             screen.blit(self.area_surface, self.rect)  # transfer to screen
             self.dirty = 0
+
+
+
