@@ -38,17 +38,18 @@ never to infest us again."""
 
 def example1():
     # start up pygame
-    os.environ['SDL_VIDEO_WINDOW_POS'] = "300,400"
+    os.environ['SDL_VIDEO_WINDOW_POS'] = "350,550"
 
     pygame.init()
     w = 1100
     h = 420
     screen = pygame.display.set_mode((w, h))
+    screen.fill((128, 128, 128))
     clock = pygame.time.Clock()
 
-    font = pygame.font.SysFont("Liberation Sans", 60)
+    font = pygame.font.SysFont("Liberation Sans", 40)
 
-    area_rect = pygame.Rect(25, 0, w-50, h-25)
+    area_rect = pygame.Rect(50, 50, w-100, h-100)
     message = TypingArea(STORY, area_rect, font, WHITE, BLACK, wps=400)
 
     while True:

@@ -36,7 +36,7 @@ def _type_delay(word_per_min=40.0):  # set speed as words per minute
 
 class TypingArea:
     """Class to automate a rectangular area that text is typed into in PyGame.
-    Dirty sprite version: "TypingAreaSprite" located in typing_area_sprite.py file
+    DirtySprite version: "TypingAreaSprite" located in typing_area_sprite.py
 
     Call obj.update() and obj.draw() in the normal game loop
 
@@ -96,10 +96,10 @@ class TypingArea:
 
     def update(self):
         """Call obj.update() from pygame main game loop"""
-        while self.char_queue and self.next_time <= time.time():  # time for char?
+        while self.char_queue and self.next_time <= time.time():
             self._render_char(self.char_queue.popleft())  # render it
             self.next_time += _type_delay(self.wps)/1000.0
-        self.next_time = time.time()  # reset to current tick time when waiting for char
+        self.next_time = time.time()  # no chars, reset next_time to now
 
 
     # call draw from pygame main loop after update
