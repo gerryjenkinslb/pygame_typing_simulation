@@ -1,8 +1,7 @@
 # PyGame Typewriter Effect to Simulate Human Typing
 
-Blog explaining this code: [Creating a Typewriter Effect Text Box in Pygame](https://gjenkinsedu.com/post/pygame_scrolling_typewriter_text_box_0008/)
-
-related video: [PyGame human typing](https://youtu.be/4njHgre-pKM)
+Blog explaining this code: [Creating a Typewriter Effect Text Box in Pygame](https://gjenkinsedu.com/post/pygame_scrolling_typewriter_text_box_0008/)\
+Related video: [PyGame human typing](https://youtu.be/4njHgre-pKM)
 
 A viewer of my [YouTube video on how to use PyGame dirty Sprites](https://youtu.be/Pu5_8F_KaHI) 
 asked how to create a PyGame Sprite that would simulate a human typing text.
